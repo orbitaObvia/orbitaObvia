@@ -9,7 +9,7 @@ package Leilao;
      import java.net.ServerSocket;
      import java.net.Socket;
      import java.util.Scanner;
-
+     import java.sql.*;
 /**
  *
  * @author Luana
@@ -17,6 +17,9 @@ package Leilao;
 public class Servidor {
 
          public static void main(String[] args) throws IOException {
+              
+             Integer idsuario;
+              
              ServerSocket servidor = new ServerSocket(12345);
              System.out.println("Porta 12345 aberta!");
 
@@ -26,7 +29,15 @@ public class Servidor {
 
              Scanner entrada = new Scanner(cliente.getInputStream());
              while (entrada.hasNextLine()) {
-                 System.out.println(entrada.nextLine());
+                  idusuario=entrada.nextLine();
+                  System.out.println(idusuario);
+                  
+                  if(txt.equals("select * from idusuario where usuario")){
+                  saida.println("Usuario correto");
+                  }
+                  else{
+                  saida.println("usuario incorreto");
+                  }
              }
 
              entrada.close();
