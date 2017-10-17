@@ -14,37 +14,25 @@ package Leilao;
      import java.net.Socket;
      import java.net.UnknownHostException;
      import java.util.Scanner;
-     import java.sql.*;
 
      public class Cliente {
          public static void main(String[] args)
                          throws UnknownHostException, IOException {
-             
-             Integer idusuario; 
-             
-             if(idusuario=="select * from idusuario where usuario") {
-             
-             Scanner teclado = new Scanner(cliente.getOutputStream());
+              
+              Integer idusuario;
+              
+              
+             Socket cliente = new Socket("127.0.0.1", 12345);
+             System.out.println("O cliente se conectou ao servidor!");
+
+             Scanner teclado = new Scanner(System.in);
              PrintStream saida = new PrintStream(cliente.getOutputStream());
 
              while (teclado.hasNextLine()) {
-             saida.println(teclado.nextLine());
-             
+                 saida.println(teclado.nextLine());
+             }
+
              saida.close();
              teclado.close();
-             
-             }
-             
-             else{
-             
-             
-             }
-           
-               System.out.println("O cliente se conectou ao servidor!");
-
-            
-             }
-
-             
          }
      }
