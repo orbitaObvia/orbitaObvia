@@ -1,55 +1,41 @@
 ﻿create table usuario(
 
-idusuario int primary key not null ,
+idusuario serial primary key not null ,
 datanascimento date,
-cep int,
-cpf int,
+cep varchar(9),
+nomeusuario varchar(255),
+cpf varchar(12),
 email varchar(255),
-administrador varchar(255),
 senha varchar(255),
-ativo char
-
+ativo bit(1)
 );
 
 create table catalogo(
 
-iditem int primary key not null,
+iditem serial primary key not null,
 nomeitem varchar (255) not null,
-valorinicial int,
-ativo char(3),
-idusuario int,
-valorcompra int,
 descricao varchar(255),
+valorinicial numeric,
+ativo bit(1),
+idusuario serial,
+valorcompra int,
+
 foreign key (idusuario) references usuario(idusuario) );
 
 create table lances(
 
-idlance int primary key not null,
-iditem int not null, 
-maiorvalor int, 
-vendido char(3),
-idusuario int,
-ddata date,
-precolance int,
+idlance serial primary key not null,
+iditem serial not null, 
+maiorvalor numeric, 
+vendido bit(1),
+idusuario serial,
+ddata timestamp with time zone,
+precolance numeric,
 
 foreign key (iditem) references catalogo(iditem),
 foreign key (idusuario) references usuario(idusuario) );
 
-
-create table leilao(
-
-idleilao int primary key not null,
-idusuario int not null,
-idlance int,
-iditem int,
-lancevencedor int ,
-ddata date,
-foreign key (idusuario) references usuario(idusuario),
-foreign key (idlance) references lances(idlance),
-foreign key (iditem) references catalogo(iditem));
-
-
 select * from usuario;
 select * from catalogo;
 select * from lances;
-select * from leilao;
+
